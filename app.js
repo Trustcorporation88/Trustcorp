@@ -353,7 +353,7 @@ function buildNav() {
 const CONTACT = {
   email: "flavio@trustcorp.com.br",
   whatsapp: "5514998370223",
-  whatsappDisplay: "+55 14 99837-0223",
+  whatsappDisplay: "@frinaldi.co",
   instagram: "frinaldi.co",
   instagramUrl: "https://instagram.com/frinaldi.co",
 };
@@ -385,7 +385,7 @@ function buildFooter() {
           <h4>Contato</h4>
           <a href="mailto:${CONTACT.email}">${CONTACT.email}</a>
           <a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp ${CONTACT.whatsappDisplay}</a>
-          <a href="${CONTACT.instagramUrl}" target="_blank" rel="noopener noreferrer">@${CONTACT.instagram}</a>
+          <a href="${CONTACT.instagramUrl}" target="_blank" rel="noopener noreferrer">Instagram @${CONTACT.instagram}</a>
         </div>
       </div>
       <div class="container footer-bottom">
