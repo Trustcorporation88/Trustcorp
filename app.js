@@ -350,6 +350,14 @@ function buildNav() {
   `;
 }
 
+const CONTACT = {
+  email: "flavio@trustcorp.com.br",
+  whatsapp: "5514998370223",
+  whatsappDisplay: "+55 14 99837-0223",
+  instagram: "frinaldi.co",
+  instagramUrl: "https://instagram.com/frinaldi.co",
+};
+
 function buildFooter() {
   return `
     <footer class="site-footer">
@@ -374,10 +382,10 @@ function buildFooter() {
           <a href="contato.html">Falar com especialista</a>
         </div>
         <div>
-          <h4>Confiança</h4>
-          <p>Ambientes protegidos · HTTPS · Cloudflare</p>
-          <p>LGPD-aware · Acesso controlado por produto</p>
-          <p class="footer-meta">MVP de demonstração</p>
+          <h4>Contato</h4>
+          <a href="mailto:${CONTACT.email}">${CONTACT.email}</a>
+          <a href="https://wa.me/${CONTACT.whatsapp}" target="_blank" rel="noopener noreferrer">WhatsApp ${CONTACT.whatsappDisplay}</a>
+          <a href="${CONTACT.instagramUrl}" target="_blank" rel="noopener noreferrer">@${CONTACT.instagram}</a>
         </div>
       </div>
       <div class="container footer-bottom">
@@ -441,6 +449,32 @@ function initContactPrefill() {
   const produto = params.get("produto");
   const field = document.getElementById("produto");
   if (produto && field) field.value = produto;
+
+  const form = document.getElementById("contact-form");
+  if (!form) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nome = document.getElementById("nome")?.value?.trim() || "";
+    const email = document.getElementById("email")?.value?.trim() || "";
+    const empresa = document.getElementById("empresa")?.value?.trim() || "";
+    const produtoValor = document.getElementById("produto")?.value?.trim() || "Não informado";
+    const mensagem = document.getElementById("mensagem")?.value?.trim() || "";
+
+    const text = [
+      "Olá, TrustCorp!",
+      `Nome: ${nome}`,
+      `E-mail: ${email}`,
+      empresa ? `Empresa: ${empresa}` : null,
+      `Interesse: ${produtoValor}`,
+      mensagem ? `Mensagem: ${mensagem}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const wa = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
+    window.open(wa, "_blank", "noopener,noreferrer");
+  });
 }
 
 function initHome() {
