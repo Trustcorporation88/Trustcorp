@@ -1,8 +1,7 @@
-[phases.setup]
-nixPkgs = ["nodejs_20"]
+providers = ["node"]
 
-[phases.install]
-cmds = ["npm install"]
+[variables]
+NODE_ENV = "production"
 
 [start]
-cmd = "npx serve -s . -l $PORT"
+cmd = "npm start"

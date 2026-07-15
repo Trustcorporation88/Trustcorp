@@ -1,0 +1,6 @@
+node_modules
+.git
+.gitignore
+README-RAILWAY.md
+*.log
+.DS_Store
