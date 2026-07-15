@@ -1,0 +1,16 @@
+{
+  "name": "trustcorp-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Trust Corporation hub — holding digital",
+  "scripts": {
+    "start": "serve -s . -l ${PORT:-3000}",
+    "dev": "serve -s . -l 3000"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}

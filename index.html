@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trust Corporation | Holding digital — Patrimônio & Legado</title>
+  <meta name="description" content="Trust Corporation: ecossistema de soluções para operação empresarial, inteligência, marketing, produtividade e experiências digitais." />
+  <link rel="icon" href="assets/logo-trust.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#050a12', 900: '#0a1220', 800: '#152238' },
+            gold: { DEFAULT: '#c9a45c', soft: '#e0c48a' }
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Holding digital · MVP</div>
+          <h1>Tecnologia, inteligência e operação sob uma mesma <span>confiança</span>.</h1>
+          <p class="lead">
+            A Trust Corporation reúne produtos próprios e marcas do ecossistema para empresas e usuários finais —
+            de contabilidade e CRM a investigação, IA, marketing e experiências digitais.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="produtos.html">Explorar catálogo</a>
+            <a class="btn btn-secondary" href="contato.html">Falar com especialista</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="hero-logo-wrap">
+            <img src="assets/logo-trust.png" alt="Trust Corporation" class="hero-logo" />
+          </div>
+          <div class="stat-grid">
+            <div class="stat"><strong>5</strong><span>pilares</span></div>
+            <div class="stat"><strong>16</strong><span>produtos</span></div>
+            <div class="stat"><strong>B2B</strong><span>foco holding</span></div>
+            <div class="stat"><strong>CF</strong><span>Cloudflare ready</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Cinco pilares do ecossistema</h2>
+          <p>Organize a jornada por intenção de negócio — sem misturar operação séria com lifestyle na mesma narrativa.</p>
+        </div>
+        <div class="pillar-grid">
+          <a class="pillar-card" href="empresas.html">
+            <div class="icon-dot">E</div>
+            <h3>Operação Empresarial</h3>
+            <p>ProContador, CRM, Legal, Fin e Excel para rotina executiva.</p>
+            <span class="link">Ver produtos →</span>
+          </a>
+          <a class="pillar-card teal" href="inteligencia.html">
+            <div class="icon-dot">I</div>
+            <h3>Inteligência & Investigação</h3>
+            <p>Watson, Mr. Holmes, Oráculo, InvestigaTop e Future Fish.</p>
+            <span class="link">Ver produtos →</span>
+          </a>
+          <a class="pillar-card" href="marketing.html">
+            <div class="icon-dot">M</div>
+            <h3>Marketing & Vendas</h3>
+            <p>Social Flow e Trust Insta para criação, automação e conversão.</p>
+            <span class="link">Ver produtos →</span>
+          </a>
+          <a class="pillar-card teal" href="produtividade.html">
+            <div class="icon-dot">P</div>
+            <h3>Produtividade & Documentos</h3>
+            <p>Cortex PDF e Trust Excel para dados e documentos sem fricção.</p>
+            <span class="link">Ver produtos →</span>
+          </a>
+          <a class="pillar-card" href="lifestyle.html">
+            <div class="icon-dot">L</div>
+            <h3>Lifestyle & Experiências</h3>
+            <p>Voos Cortex, SeligaAqui e GPS Privado no ecossistema.</p>
+            <span class="link">Ver produtos →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Destaques da holding</h2>
+          <p>Seleção inicial para validar narrativa, status e CTAs do hub.</p>
+        </div>
+        <div id="featured-grid" class="product-grid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Como a TrustCorp organiza o portfólio</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div>
+              <h3>Holding como porta de entrada</h3>
+              <p>www.trustcorp.com.br apresenta a casa-mãe e direciona para cada produto com clareza.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div>
+              <h3>Marcas próprias preservadas</h3>
+              <p>ProContador, Social Flow, Cortex PDF e demais marcas mantêm identidade e domínio.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div>
+              <h3>Suíte Trust + ecossistema</h3>
+              <p>Subdomínios Trust e produtos externos convivem no mesmo mapa comercial.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Confiança operacional</h2>
+        </div>
+        <div class="trust-grid">
+          <div class="trust-card">
+            <h3>Infraestrutura</h3>
+            <p>Produtos preparados para Cloudflare, HTTPS e ambientes segmentados por domínio.</p>
+          </div>
+          <div class="trust-card">
+            <h3>Governança de marca</h3>
+            <p>Holding B2B com pilares claros — cada produto com status, CTA e proposta objetiva.</p>
+          </div>
+          <div class="trust-card">
+            <h3>Privacidade</h3>
+            <p>Acesso controlado por login nos produtos sensíveis e postura LGPD-aware.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="cta-band">
+        <h2>Quer validar o hub com o time?</h2>
+        <p>Use este MVP para testar navegação, pilares, status dos produtos e mensagem da holding.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="produtos.html">Abrir catálogo completo</a>
+          <a class="btn btn-secondary" href="contato.html">Solicitar demo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="app.js"></script>
+</body>
+</html>

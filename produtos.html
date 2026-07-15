@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produtos | Trust Corporation</title>
+  <meta name="description" content="Catálogo completo do ecossistema Trust Corporation: subdomínios Trust e marcas próprias." />
+  <link rel="icon" href="assets/logo-trust.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="produtos">
+  <div id="site-header"></div>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">Catálogo</div>
+        <h1>Todos os produtos da <span>TrustCorp</span></h1>
+        <p class="lead">Subdomínios da suíte e marcas próprias do ecossistema, com status e CTAs prontos para teste.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0.5rem">
+      <div class="container">
+        <div class="toolbar">
+          <div class="field">
+            <label for="filter-search">Buscar</label>
+            <input id="filter-search" class="field-input" type="search" placeholder="Nome, tagline ou descrição" />
+          </div>
+          <div class="field">
+            <label for="filter-pillar">Pilar</label>
+            <select id="filter-pillar" class="field-select">
+              <option value="all">Todos</option>
+              <option value="empresas">Empresas</option>
+              <option value="inteligencia">Inteligência</option>
+              <option value="marketing">Marketing</option>
+              <option value="produtividade">Produtividade</option>
+              <option value="lifestyle">Lifestyle</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="filter-status">Status</label>
+            <select id="filter-status" class="field-select">
+              <option value="all">Todos</option>
+              <option value="ativo">Ativo</option>
+              <option value="manutencao">Manutenção</option>
+              <option value="em_breve">Em breve</option>
+            </select>
+          </div>
+          <p id="catalog-count" class="meta-line" style="margin:0;align-self:center"></p>
+        </div>
+        <div id="catalog-grid" class="product-grid"></div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="app.js"></script>
+</body>
+</html>
