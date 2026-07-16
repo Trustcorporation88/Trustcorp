@@ -570,6 +570,16 @@ function initHome() {
   const countEl = document.getElementById("product-total");
   if (countEl) countEl.textContent = String(PRODUCTS.length);
   renderHomeMap();
+
+  // Mini links inside step 1 should navigate to pillar pages without fighting parent <a>
+  document.querySelectorAll(".step-mini[data-href]").forEach((el) => {
+    el.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const href = el.getAttribute("data-href");
+      if (href) window.location.href = href;
+    });
+  });
 }
 
 function initPillarPage(pillarId) {
