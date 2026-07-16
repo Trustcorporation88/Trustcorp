@@ -1,181 +1,265 @@
-/* TrustCorp Hub — catalog + UI */
+/* TrustCorp Hub — clear catalog + product pages */
 const PRODUCTS = [
   {
     id: "procontador",
     name: "ProContador",
-    tagline: "Contabilidade operacional premium",
-    description: "Multiempresa, lançamentos, relatórios, risco fiscal e base para IA/Open Finance.",
+    tagline: "Contabilidade operacional com cara de produto premium",
+    description:
+      "Centralize multiempresa, lançamentos, relatórios e risco fiscal em uma interface executiva. Ideal para escritórios e grupos que precisam de operação contábil clara, segura e preparada para IA.",
+    problem: "Contabilidade espalhada em planilhas, sistemas confusos e pouca visão executiva.",
+    solution: "Um shell unificado para operar empresas, fiscal e relatórios com clareza.",
+    forWho: "Escritórios contábeis, holdings e grupos empresariais",
     url: "https://www.procontador.com.br",
     domain: "procontador.com.br",
     pillar: "empresas",
     status: "ativo",
-    delivers: ["Multiempresa", "Fiscal e auditoria", "Base para IA"],
+    delivers: [
+      "Operação multiempresa legível",
+      "Fluxos fiscais e de auditoria",
+      "Base pronta para IA e Open Finance",
+    ],
   },
   {
     id: "crm",
     name: "Trust CRM",
-    tagline: "Pipeline e relacionamento",
-    description: "Leads, oportunidades e follow-up comercial com visão executiva.",
+    tagline: "Pipeline comercial sob controle",
+    description:
+      "Organize leads, oportunidades e follow-up em um CRM direto, feito para times que precisam vender com método e previsibilidade.",
+    problem: "Vendas sem processo, leads perdidos e follow-up inconsistente.",
+    solution: "Pipeline visual, histórico de relacionamento e rotina comercial clara.",
+    forWho: "Times comerciais B2B e operações de vendas",
     url: "https://crm.trustcorp.com.br",
     domain: "crm.trustcorp.com.br",
     pillar: "empresas",
     status: "ativo",
-    delivers: ["Pipeline", "Leads", "Follow-up"],
+    delivers: ["Pipeline de oportunidades", "Gestão de leads", "Follow-up estruturado"],
   },
   {
     id: "legal",
     name: "Trust Legal",
-    tagline: "Operação jurídica digital",
-    description: "Contratos, prazos e fluxos legais com rastreabilidade.",
+    tagline: "Jurídico com prazo, rastro e clareza",
+    description:
+      "Contratos, prazos e fluxos legais em um ambiente digital para decisão rápida e operação rastreável.",
+    problem: "Contratos e prazos perdidos em e-mail, pastas e planilhas.",
+    solution: "Rotina jurídica digital com controle de documentos e datas críticas.",
+    forWho: "Departamentos jurídicos e escritórios",
     url: "https://legal.trustcorp.com.br",
     domain: "legal.trustcorp.com.br",
     pillar: "empresas",
     status: "ativo",
-    delivers: ["Contratos", "Prazos", "Rotina jurídica"],
+    delivers: ["Gestão de contratos", "Controle de prazos", "Rotina jurídica digital"],
   },
   {
     id: "fin",
     name: "Trust Fin",
-    tagline: "Financeiro com indicadores",
-    description: "Fluxo de caixa, cobranças e saúde financeira do negócio.",
+    tagline: "Financeiro com indicadores acionáveis",
+    description:
+      "Acompanhe fluxo de caixa, cobranças e saúde financeira com visão executiva para decidir com números, não com achismo.",
+    problem: "Financeiro reativo, indicadores atrasados e cobrança desorganizada.",
+    solution: "Painel financeiro com indicadores e rotinas de cobrança.",
+    forWho: "CFOs, controllers e gestores financeiros",
     url: "https://fin.trustcorp.com.br",
     domain: "fin.trustcorp.com.br",
     pillar: "empresas",
     status: "ativo",
-    delivers: ["Fluxo de caixa", "Cobrança", "Indicadores"],
+    delivers: ["Fluxo de caixa", "Cobrança e indicadores", "Visão financeira unificada"],
+  },
+  {
+    id: "cnpj",
+    name: "Trust CNPJ",
+    tagline: "Consulta completa CNPJ e CPF",
+    description:
+      "Central de Consultas Fiscais da TrustCorp: dados cadastrais, societários e fiscais em um único lugar — consulta CNPJ e CPF com responsabilidade e ética.",
+    problem: "Consultas fiscais e cadastrais espalhadas, lentas e sem padrão operacional.",
+    solution: "Portal único para consulta completa de CNPJ e CPF com dados cadastrais, societários e fiscais.",
+    forWho: "Escritórios, compliance, crédito, jurídico e operações comerciais",
+    url: "https://cnpj.trustcorp.com.br",
+    domain: "cnpj.trustcorp.com.br",
+    pillar: "empresas",
+    status: "ativo",
+    alsoIn: ["inteligencia"],
+    delivers: ["Consulta CNPJ completa", "Consulta CPF", "Dados cadastrais, societários e fiscais"],
   },
   {
     id: "excel",
     name: "Trust Excel",
     tagline: "Planilhas e dados sem fricção",
-    description: "Automação de planilhas e relatórios operacionais.",
+    description:
+      "Automatize rotinas de planilha, consolide relatórios e transforme dados operacionais em decisão — sem retrabalho manual.",
+    problem: "Horas perdidas em planilhas manuais e versões desencontradas.",
+    solution: "Automação e consolidação de dados em Excel com foco em produtividade.",
+    forWho: "Operações, FP&A e analistas",
     url: "https://excel.trustcorp.com.br",
     domain: "excel.trustcorp.com.br",
     pillar: "produtividade",
     status: "ativo",
     alsoIn: ["empresas"],
-    delivers: ["Automação", "Relatórios", "Menos trabalho manual"],
+    delivers: ["Automação de planilhas", "Relatórios consolidados", "Menos trabalho manual"],
   },
   {
     id: "watson",
     name: "Trust Watson",
-    tagline: "Assistente inteligente",
-    description: "IA para respostas, análise e automação cognitiva da operação.",
+    tagline: "Assistente inteligente para a operação",
+    description:
+      "Camada de IA para respostas, análise e automação cognitiva sobre processos e dados da empresa.",
+    problem: "Equipes sobrecarregadas com tarefas repetitivas e busca de informação.",
+    solution: "Assistente de IA integrado à operação para acelerar análise e resposta.",
+    forWho: "Operações, suporte e times de inovação",
     url: "https://watson.trustcorp.com.br",
     domain: "watson.trustcorp.com.br",
     pillar: "inteligencia",
     status: "ativo",
-    delivers: ["Assistente IA", "Análise", "Automação"],
+    delivers: ["Assistente de IA", "Análise assistida", "Automação cognitiva"],
   },
   {
     id: "mrholmes",
     name: "Mr. Holmes",
-    tagline: "Inteligência investigativa",
-    description: "Padrões, cruzamentos e sinais ocultos para decisão com evidência.",
+    tagline: "Inteligência investigativa aplicada",
+    description:
+      "Investigue padrões, cruzamentos e sinais ocultos com abordagem orientada a evidências e decisão.",
+    problem: "Dados dispersos e dificuldade de enxergar padrões críticos.",
+    solution: "Ferramenta de investigação e cruzamento de sinais para compliance e risco.",
+    forWho: "Compliance, risco e inteligência",
     url: "https://mrholmes.trustcorp.com.br",
     domain: "mrholmes.trustcorp.com.br",
     pillar: "inteligencia",
     status: "ativo",
-    delivers: ["Investigação", "Cruzamento", "Insights"],
+    delivers: ["Investigação de padrões", "Cruzamento de sinais", "Insights acionáveis"],
   },
   {
     id: "oraculo",
     name: "Trust Oráculo",
-    tagline: "Previsão e cenários",
-    description: "Projeções, alertas e apoio à decisão estratégica.",
+    tagline: "Previsão para decidir antes",
+    description:
+      "Projeções, alertas e cenários para antecipar movimentos de mercado, operação e risco.",
+    problem: "Decisões baseadas só no passado, sem visão de cenário futuro.",
+    solution: "Camada preditiva com alertas e cenários para liderança.",
+    forWho: "Liderança e estratégia",
     url: "https://oraculo.trustcorp.com.br",
     domain: "oraculo.trustcorp.com.br",
     pillar: "inteligencia",
     status: "ativo",
-    delivers: ["Projeções", "Alertas", "Cenários"],
+    delivers: ["Projeções e cenários", "Alertas inteligentes", "Apoio à decisão"],
   },
   {
     id: "investigatop",
     name: "InvestigaTop",
     tagline: "Revelando ativos ocultos",
-    description: "Investigação patrimonial, due diligence e recuperação de ativos.",
+    description:
+      "Investigação patrimonial, due diligence, análise de crédito e recuperação de ativos com tecnologia e expertise jurídica.",
+    problem: "Dificuldade de mapear patrimônio, risco e ativos ocultos com segurança.",
+    solution: "Plataforma de investigação patrimonial com relatórios e fluxos de ação.",
+    forWho: "Escritórios, credores e due diligence",
     url: "https://investigatop.com.br",
     domain: "investigatop.com.br",
     pillar: "inteligencia",
     status: "ativo",
-    delivers: ["Patrimônio", "Due diligence", "Recuperação"],
+    delivers: ["Pesquisa patrimonial", "Due diligence", "Recuperação de ativos"],
   },
   {
     id: "futurefish",
     name: "Future Fish",
-    tagline: "Cenários de previsão VIP",
-    description: "Acesso controlado a simulações e previsões exclusivas.",
+    tagline: "Cenários de previsão exclusivos",
+    description:
+      "Acesso VIP a cenários e simulações de previsão para clientes autorizados do ecossistema.",
+    problem: "Previsões estratégicas restritas e sem ambiente controlado.",
+    solution: "Portal VIP de cenários e simulações com acesso autorizado.",
+    forWho: "Clientes VIP e parceiros autorizados",
     url: "https://future.seligaaqui.online",
     domain: "future.seligaaqui.online",
     pillar: "inteligencia",
     status: "ativo",
-    delivers: ["VIP", "Cenários", "Acesso controlado"],
+    delivers: ["Cenários exclusivos", "Acesso controlado", "Previsão assistida"],
   },
   {
     id: "socialflow",
     name: "Social Flow",
-    tagline: "Vendas, IA e automação",
-    description: "18 agentes de IA, Creator Studio, Instagram, WhatsApp, loja e pagamentos.",
+    tagline: "Venda, crie e automatize em uma plataforma",
+    description:
+      "18 agentes de IA, Creator Studio, Instagram oficial, WhatsApp Bot, loja e pagamentos — tudo integrado para vender com menos esforço.",
+    problem: "Marketing e vendas fragmentados em várias ferramentas.",
+    solution: "Plataforma única de agentes, criativos, social e conversão.",
+    forWho: "Criadores, e-commerces e times de growth",
     url: "https://www.socialflow.site",
     domain: "socialflow.site",
     pillar: "marketing",
     status: "ativo",
-    delivers: ["18 agentes IA", "Creator Studio", "Instagram + WhatsApp"],
+    delivers: ["18 agentes de IA", "Creator Studio", "Instagram + WhatsApp + loja"],
   },
   {
     id: "insta",
     name: "Trust Insta",
-    tagline: "Operação social",
-    description: "Conteúdo, engajamento e rotina de Instagram na suíte Trust.",
+    tagline: "Operação social com foco em resultado",
+    description:
+      "Ferramentas para conteúdo, engajamento e rotina de Instagram alinhadas à suíte TrustCorp.",
+    problem: "Rotina de Instagram sem processo e sem integração com a operação.",
+    solution: "Ambiente Trust para operar conteúdo e engajamento no Instagram.",
+    forWho: "Marketing e social media",
     url: "https://insta.trustcorp.com.br",
     domain: "insta.trustcorp.com.br",
     pillar: "marketing",
     status: "ativo",
-    delivers: ["Conteúdo", "Engajamento", "Rotina social"],
+    delivers: ["Rotina de conteúdo", "Engajamento", "Operação social"],
   },
   {
     id: "cortexpdf",
     name: "Cortex PDF",
-    tagline: "PDF, OCR e conversão com IA",
-    description: "Toolkit online de documentos: PDF, OCR, tradutor e conversores.",
+    tagline: "PDF, OCR, tradução e conversão com IA",
+    description:
+      "Toolkit online de documentos com login: PDF, OCR, tradutor e conversores em um só lugar.",
+    problem: "Documentos travados em formatos e fluxos manuais.",
+    solution: "Suíte de PDF e OCR com IA para produtividade documental.",
+    forWho: "Profissionais e operações documentais",
     url: "https://www.cortexpdf.online",
     domain: "cortexpdf.online",
     pillar: "produtividade",
     status: "ativo",
-    delivers: ["PDF + OCR", "Tradução", "Conversores"],
+    delivers: ["PDF + OCR", "Tradução e conversão", "Acesso com login"],
   },
   {
     id: "vooscortex",
     name: "Voos Cortex",
-    tagline: "Compare passagens com clareza",
-    description: "Busca de voos, filtros e alertas de preço nacionais e internacionais.",
+    tagline: "Compare passagens com mais clareza",
+    description:
+      "Busque voos, compare opções, filtre resultados e acompanhe alertas de preço nacionais e internacionais.",
+    problem: "Busca de passagens confusa e espalhada em várias abas.",
+    solution: "Comparador simples com alertas e filtros úteis.",
+    forWho: "Viajantes e compradores de passagem",
     url: "https://vooscortex.com.br",
     domain: "vooscortex.com.br",
     pillar: "lifestyle",
     status: "ativo",
-    delivers: ["Comparação", "Alertas", "Filtros"],
+    delivers: ["Comparação de voos", "Alertas de preço", "Filtros inteligentes"],
   },
   {
     id: "seligaaqui",
     name: "SeligaAqui",
-    tagline: "TV, esportes e música",
-    description: "Painel unificado de IPTV, ao vivo, esportes e rádios.",
+    tagline: "TV, esportes e música em um só lugar",
+    description:
+      "Painel unificado de IPTV, transmissões ao vivo, esportes e música com acesso rápido por categoria.",
+    problem: "Entretenimento espalhado em vários apps e fontes.",
+    solution: "Hub único de TV, esportes e música.",
+    forWho: "Usuários finais de entretenimento",
     url: "https://seligaaqui.online",
     domain: "seligaaqui.online",
     pillar: "lifestyle",
     status: "ativo",
-    delivers: ["IPTV", "Esportes", "Música"],
+    delivers: ["IPTV e ao vivo", "Esportes", "Música e rádios"],
   },
   {
     id: "gpsprivado",
     name: "GPS Privado",
-    tagline: "Localização sob demanda",
-    description: "Produto em preparação no ecossistema TrustCorp.",
+    tagline: "Localização e privacidade sob demanda",
+    description:
+      "Produto em preparação no ecossistema TrustCorp. Em breve com proposta completa e acesso controlado.",
+    problem: "Necessidade de localização com mais controle e privacidade.",
+    solution: "Novo produto do ecossistema em fase de lançamento.",
+    forWho: "Usuários e operações que exigem privacidade",
     url: "https://gpsprivado.online",
     domain: "gpsprivado.online",
     pillar: "lifestyle",
     status: "em_breve",
-    delivers: ["Em definição", "Acesso controlado", "Lançamento"],
+    delivers: ["Em definição", "Acesso controlado", "Lançamento planejado"],
   },
 ];
 
@@ -237,26 +321,29 @@ function productsForPillar(pillarId) {
   );
 }
 
+function getProductById(id) {
+  return PRODUCTS.find((p) => p.id === id) || null;
+}
+
 function statusBadge(status) {
   return `<span class="badge badge-${status}">${STATUS_LABEL[status] || status}</span>`;
+}
+
+function productHref(product) {
+  return `produto.html?id=${encodeURIComponent(product.id)}`;
 }
 
 function productCard(product, { compact = false } = {}) {
   const pillar = PILLARS[product.pillar];
   const isSoon = product.status === "em_breve";
-  const ctaLabel = isSoon
-    ? "Em breve"
-    : product.status === "manutencao"
-      ? "Acessar"
-      : "Acessar";
-  const note = product.note ? `<p class="card-note">${product.note}</p>` : "";
+  const ctaLabel = isSoon ? "Em breve" : "Acessar";
 
   return `
     <article class="product-card" data-status="${product.status}" data-pillar="${product.pillar}" id="${product.id}">
       <div class="card-top">
         <div>
           <p class="card-kicker">${pillar ? pillar.name : "TrustCorp"}</p>
-          <h3>${product.name}</h3>
+          <h3><a class="card-title-link" href="${productHref(product)}">${product.name}</a></h3>
         </div>
         ${statusBadge(product.status)}
       </div>
@@ -269,14 +356,16 @@ function productCard(product, { compact = false } = {}) {
               .map((item) => `<li>${item}</li>`)
               .join("")}</ul>`
       }
-      <p class="card-domain"><a href="${product.url}" target="_blank" rel="noopener noreferrer">${product.domain}</a></p>
-      ${note}
+      <p class="card-domain">
+        <a href="${product.url}" target="_blank" rel="noopener noreferrer">${product.domain}</a>
+      </p>
       <div class="card-actions">
         <a class="btn btn-primary ${isSoon ? "is-disabled" : ""}"
            href="${isSoon ? "#" : product.url}"
            ${isSoon ? 'aria-disabled="true"' : 'target="_blank" rel="noopener noreferrer"'}>
           ${ctaLabel}
         </a>
+        <a class="btn btn-ghost" href="${productHref(product)}">Detalhes</a>
         <a class="btn btn-ghost" href="contato.html?produto=${encodeURIComponent(product.name)}">Demo</a>
       </div>
     </article>
@@ -324,14 +413,11 @@ function currentPage() {
 
 function buildNav() {
   const page = currentPage();
+  // Menu curto e claro
   const links = [
     { href: "index.html", label: "Home" },
-    { href: "produtos.html", label: "Catálogo" },
-    { href: "empresas.html", label: "Empresas" },
-    { href: "inteligencia.html", label: "Inteligência" },
-    { href: "marketing.html", label: "Marketing" },
-    { href: "produtividade.html", label: "Produtividade" },
-    { href: "lifestyle.html", label: "Lifestyle" },
+    { href: "produtos.html", label: "Produtos" },
+    { href: "sobre.html", label: "Sobre" },
     { href: "contato.html", label: "Contato" },
   ];
 
@@ -495,11 +581,91 @@ function initPillarPage(pillarId) {
   }
 }
 
+function initProductPage() {
+  const root = document.getElementById("product-detail");
+  if (!root) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const product = id ? getProductById(id) : null;
+
+  if (!product) {
+    root.innerHTML = `
+      <div class="panel">
+        <h1>Produto não encontrado</h1>
+        <p class="lead">Volte ao catálogo e escolha um produto válido.</p>
+        <a class="btn btn-primary" href="produtos.html">Abrir catálogo</a>
+      </div>
+    `;
+    return;
+  }
+
+  const pillar = PILLARS[product.pillar];
+  const isSoon = product.status === "em_breve";
+  document.title = `${product.name} | Trust Corporation`;
+
+  root.innerHTML = `
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">${pillar ? pillar.name : "Produto"} · ${STATUS_LABEL[product.status]}</div>
+        <h1>${product.name}</h1>
+        <p class="lead">${product.tagline}</p>
+        <p class="card-domain" style="margin-bottom:1rem">
+          <a href="${product.url}" target="_blank" rel="noopener noreferrer">${product.domain}</a>
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary ${isSoon ? "is-disabled" : ""}"
+             href="${isSoon ? "#" : product.url}"
+             ${isSoon ? 'aria-disabled="true"' : 'target="_blank" rel="noopener noreferrer"'}>
+            ${isSoon ? "Em breve" : "Acessar produto"}
+          </a>
+          <a class="btn btn-secondary" href="contato.html?produto=${encodeURIComponent(product.name)}">Solicitar demo</a>
+          <a class="btn btn-ghost" href="produtos.html">Voltar ao catálogo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container split">
+        <div class="panel">
+          <h2 style="margin-top:0">O que entrega</h2>
+          <p class="card-desc">${product.description}</p>
+          <ul class="list-plain">
+            ${product.delivers.map((d) => `<li>${d}</li>`).join("")}
+          </ul>
+        </div>
+        <div class="panel">
+          <h2 style="margin-top:0">Para quem é</h2>
+          <p class="card-desc">${product.forWho}</p>
+          <h3 style="color:var(--gold-soft);margin:1rem 0 0.4rem">Problema</h3>
+          <p class="card-desc">${product.problem}</p>
+          <h3 style="color:var(--gold-soft);margin:1rem 0 0.4rem">Solução</h3>
+          <p class="card-desc">${product.solution}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="cta-band">
+        <h2>Quer este produto na sua operação?</h2>
+        <p>Fale com a TrustCorp e avaliamos o melhor caminho de acesso ou integração.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="contato.html?produto=${encodeURIComponent(product.name)}">Falar com especialista</a>
+          <a class="btn btn-secondary" href="https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
+            `Olá TrustCorp! Tenho interesse no produto ${product.name}.`
+          )}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   mountChrome();
   const page = document.body.dataset.page;
   if (page === "home") initHome();
   if (page === "produtos") initFilters();
   if (page === "contato") initContactPrefill();
+  if (page === "produto") initProductPage();
   if (page && PILLARS[page]) initPillarPage(page);
 });
