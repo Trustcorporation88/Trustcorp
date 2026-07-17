@@ -315,6 +315,215 @@ const CONTACT = {
   instagramUrl: "https://instagram.com/frinaldi.co",
 };
 
+// Access control: site is public, services require admin/client password.
+const AUTH = {
+  authenticated: false,
+  role: null, // 'admin' | 'client' | null
+  loaded: false,
+};
+
+function canAccessServices() {
+  return AUTH.authenticated && (AUTH.role === "admin" || AUTH.role === "client");
+}
+
+function roleLabel(role) {
+  if (role === "admin") return "Administrador";
+  if (role === "client") return "Cliente";
+  return "Visitante";
+}
+
+async function fetchSession() {
+  try {
+    const res = await fetch("/api/session", { credentials: "same-origin" });
+    const data = await res.json();
+    AUTH.authenticated = Boolean(data.authenticated);
+    AUTH.role = data.role || null;
+  } catch {
+    AUTH.authenticated = false;
+    AUTH.role = null;
+  } finally {
+    AUTH.loaded = true;
+  }
+  return AUTH;
+}
+
+async function loginWithPassword(password) {
+  const res = await fetch("/api/login", {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ password }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || !data.ok) {
+    throw new Error(data.error || "Senha inválida");
+  }
+  AUTH.authenticated = true;
+  AUTH.role = data.role;
+  AUTH.loaded = true;
+  return data;
+}
+
+async function logoutSession() {
+  try {
+    await fetch("/api/logout", {
+      method: "POST",
+      credentials: "same-origin",
+    });
+  } catch {
+    // ignore network errors on logout
+  }
+  AUTH.authenticated = false;
+  AUTH.role = null;
+  AUTH.loaded = true;
+}
+
+function openLoginModal(message = "") {
+  const modal = document.getElementById("login-modal");
+  const msg = document.getElementById("login-message");
+  const err = document.getElementById("login-error");
+  if (msg) msg.textContent = message || "Digite a senha de administrador ou de cliente para liberar os serviços.";
+  if (err) err.textContent = "";
+  if (modal) {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+  }
+  const input = document.getElementById("login-password");
+  if (input) {
+    input.value = "";
+    setTimeout(() => input.focus(), 50);
+  }
+}
+
+function closeLoginModal() {
+  const modal = document.getElementById("login-modal");
+  if (modal) {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  }
+}
+
+function ensureLoginModal() {
+  if (document.getElementById("login-modal")) return;
+  const wrap = document.createElement("div");
+  wrap.id = "login-modal";
+  wrap.className = "login-modal";
+  wrap.setAttribute("aria-hidden", "true");
+  wrap.innerHTML = `
+    <div class="login-backdrop" data-close-login></div>
+    <div class="login-card" role="dialog" aria-modal="true" aria-labelledby="login-title">
+      <button class="login-close" type="button" data-close-login aria-label="Fechar">×</button>
+      <p class="card-kicker">Acesso restrito</p>
+      <h3 id="login-title">Entrar na TrustCorp</h3>
+      <p id="login-message" class="card-desc">Digite a senha de administrador ou de cliente para liberar os serviços.</p>
+      <form id="login-form" class="login-form">
+        <label for="login-password">Senha</label>
+        <input id="login-password" name="password" type="password" class="field-input" required autocomplete="current-password" placeholder="Senha de acesso" />
+        <p id="login-error" class="login-error" aria-live="polite"></p>
+        <button class="btn btn-primary" type="submit">Liberar serviços</button>
+      </form>
+      <p class="form-note">Visitantes podem ver o site, mas não acessam os serviços sem senha.</p>
+    </div>
+  `;
+  document.body.appendChild(wrap);
+
+  wrap.querySelectorAll("[data-close-login]").forEach((el) => {
+    el.addEventListener("click", closeLoginModal);
+  });
+
+  const form = document.getElementById("login-form");
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const input = document.getElementById("login-password");
+    const err = document.getElementById("login-error");
+    const password = input?.value || "";
+    if (err) err.textContent = "";
+    try {
+      const data = await loginWithPassword(password);
+      closeLoginModal();
+      refreshAuthUI();
+      alert(data.message || "Acesso liberado");
+    } catch (error) {
+      if (err) err.textContent = error.message || "Senha inválida";
+    }
+  });
+}
+
+function serviceHref(product) {
+  if (product.status === "em_breve") return "#";
+  if (!canAccessServices()) return "#login";
+  return product.url;
+}
+
+function serviceAttrs(product) {
+  if (product.status === "em_breve") return 'aria-disabled="true"';
+  if (!canAccessServices()) return 'data-requires-auth="true"';
+  return 'target="_blank" rel="noopener noreferrer"';
+}
+
+function serviceLabel(product) {
+  if (product.status === "em_breve") return "Em breve";
+  if (!canAccessServices()) return "Bloqueado";
+  return "Acessar";
+}
+
+function refreshAuthUI() {
+  // Rebuild chrome and current page content with updated access state
+  mountChrome();
+  const page = document.body.dataset.page;
+  if (page === "home") initHome();
+  if (page === "produtos") initFilters();
+  if (page === "produto") initProductPage();
+  if (page && PILLARS[page]) initPillarPage(page);
+  updateAuthBanner();
+}
+
+function updateAuthBanner() {
+  let banner = document.getElementById("auth-banner");
+  if (!banner) {
+    banner = document.createElement("div");
+    banner.id = "auth-banner";
+    banner.className = "auth-banner";
+    const header = document.getElementById("site-header");
+    if (header && header.parentNode) {
+      header.parentNode.insertBefore(banner, header.nextSibling);
+    } else {
+      document.body.prepend(banner);
+    }
+  }
+
+  if (canAccessServices()) {
+    banner.innerHTML = `
+      <div class="container auth-banner-inner is-open">
+        <span>Serviços liberados · ${roleLabel(AUTH.role)}</span>
+        <button type="button" class="btn btn-ghost" id="auth-logout-btn">Sair</button>
+      </div>
+    `;
+  } else {
+    banner.innerHTML = `
+      <div class="container auth-banner-inner">
+        <span>Site aberto para visitação · serviços bloqueados</span>
+        <button type="button" class="btn btn-secondary" id="auth-login-btn">Entrar</button>
+      </div>
+    `;
+  }
+
+  document.getElementById("auth-login-btn")?.addEventListener("click", () => openLoginModal());
+  document.getElementById("auth-logout-btn")?.addEventListener("click", async () => {
+    await logoutSession();
+    refreshAuthUI();
+  });
+}
+
+function bindServiceLocks(root = document) {
+  root.querySelectorAll("[data-requires-auth='true']").forEach((el) => {
+    el.addEventListener("click", (event) => {
+      event.preventDefault();
+      openLoginModal("Para acessar este serviço, use a senha de administrador ou de cliente.");
+    });
+  });
+}
+
 function productsForPillar(pillarId) {
   return PRODUCTS.filter(
     (p) => p.pillar === pillarId || (p.alsoIn && p.alsoIn.includes(pillarId))
@@ -336,10 +545,13 @@ function productHref(product) {
 function productCard(product, { compact = false } = {}) {
   const pillar = PILLARS[product.pillar];
   const isSoon = product.status === "em_breve";
-  const ctaLabel = isSoon ? "Em breve" : "Acessar";
+  const locked = !canAccessServices() && !isSoon;
+  const ctaLabel = serviceLabel(product);
+  const href = serviceHref(product);
+  const attrs = serviceAttrs(product);
 
   return `
-    <article class="product-card" data-status="${product.status}" data-pillar="${product.pillar}" id="${product.id}">
+    <article class="product-card ${locked ? "is-locked" : ""}" data-status="${product.status}" data-pillar="${product.pillar}" id="${product.id}">
       <div class="card-top">
         <div>
           <p class="card-kicker">${pillar ? pillar.name : "TrustCorp"}</p>
@@ -357,12 +569,18 @@ function productCard(product, { compact = false } = {}) {
               .join("")}</ul>`
       }
       <p class="card-domain">
-        <a href="${product.url}" target="_blank" rel="noopener noreferrer">${product.domain}</a>
+        ${
+          locked
+            ? `<span class="domain-locked">${product.domain} · bloqueado</span>`
+            : isSoon
+              ? `<span class="domain-locked">${product.domain}</span>`
+              : `<a href="${product.url}" target="_blank" rel="noopener noreferrer">${product.domain}</a>`
+        }
       </p>
       <div class="card-actions">
-        <a class="btn btn-primary ${isSoon ? "is-disabled" : ""}"
-           href="${isSoon ? "#" : product.url}"
-           ${isSoon ? 'aria-disabled="true"' : 'target="_blank" rel="noopener noreferrer"'}>
+        <a class="btn btn-primary ${isSoon || locked ? "is-disabled-look" : ""}"
+           href="${href}"
+           ${attrs}>
           ${ctaLabel}
         </a>
         <a class="btn btn-ghost" href="${productHref(product)}">Detalhes</a>
@@ -376,6 +594,7 @@ function renderProductGrid(targetId, products, options = {}) {
   const el = document.getElementById(targetId);
   if (!el) return;
   el.innerHTML = products.map((p) => productCard(p, options)).join("");
+  bindServiceLocks(el);
 }
 
 function renderHomeMap() {
@@ -421,6 +640,10 @@ function buildNav() {
     { href: "contato.html", label: "Contato" },
   ];
 
+  const authAction = canAccessServices()
+    ? `<button type="button" class="nav-auth-btn" id="navLogoutBtn">Sair (${roleLabel(AUTH.role)})</button>`
+    : `<button type="button" class="nav-auth-btn" id="navLoginBtn">Entrar</button>`;
+
   return `
     <header class="site-header">
       <div class="container header-inner">
@@ -441,6 +664,7 @@ function buildNav() {
                 `<a href="${l.href}" class="${page === l.href ? "is-active" : ""}">${l.label}</a>`
             )
             .join("")}
+          ${authAction}
         </nav>
       </div>
     </header>
@@ -485,6 +709,7 @@ function buildFooter() {
 }
 
 function mountChrome() {
+  ensureLoginModal();
   const navMount = document.getElementById("site-header");
   const footerMount = document.getElementById("site-footer");
   if (navMount) navMount.innerHTML = buildNav();
@@ -498,6 +723,12 @@ function mountChrome() {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
   }
+
+  document.getElementById("navLoginBtn")?.addEventListener("click", () => openLoginModal());
+  document.getElementById("navLogoutBtn")?.addEventListener("click", async () => {
+    await logoutSession();
+    refreshAuthUI();
+  });
 }
 
 function initFilters() {
@@ -570,6 +801,7 @@ function initHome() {
   const countEl = document.getElementById("product-total");
   if (countEl) countEl.textContent = String(PRODUCTS.length);
   renderHomeMap();
+  bindServiceLocks(document.getElementById("home-product-map") || document);
 
   // Mini links inside step 1 should navigate to pillar pages without fighting parent <a>
   document.querySelectorAll(".step-mini[data-href]").forEach((el) => {
@@ -612,6 +844,7 @@ function initProductPage() {
 
   const pillar = PILLARS[product.pillar];
   const isSoon = product.status === "em_breve";
+  const locked = !canAccessServices() && !isSoon;
   document.title = `${product.name} | Trust Corporation`;
 
   root.innerHTML = `
@@ -621,13 +854,24 @@ function initProductPage() {
         <h1>${product.name}</h1>
         <p class="lead">${product.tagline}</p>
         <p class="card-domain" style="margin-bottom:1rem">
-          <a href="${product.url}" target="_blank" rel="noopener noreferrer">${product.domain}</a>
+          ${
+            locked
+              ? `<span class="domain-locked">${product.domain} · acesso bloqueado</span>`
+              : isSoon
+                ? `<span class="domain-locked">${product.domain}</span>`
+                : `<a href="${product.url}" target="_blank" rel="noopener noreferrer">${product.domain}</a>`
+          }
         </p>
+        ${
+          locked
+            ? `<p class="card-note">Este serviço está bloqueado para visitantes. Entre com senha de administrador ou cliente para acessar.</p>`
+            : ""
+        }
         <div class="hero-actions">
-          <a class="btn btn-primary ${isSoon ? "is-disabled" : ""}"
-             href="${isSoon ? "#" : product.url}"
-             ${isSoon ? 'aria-disabled="true"' : 'target="_blank" rel="noopener noreferrer"'}>
-            ${isSoon ? "Em breve" : "Acessar produto"}
+          <a class="btn btn-primary ${isSoon || locked ? "is-disabled-look" : ""}"
+             href="${serviceHref(product)}"
+             ${serviceAttrs(product)}>
+            ${isSoon ? "Em breve" : locked ? "Desbloquear acesso" : "Acessar produto"}
           </a>
           <a class="btn btn-secondary" href="contato.html?produto=${encodeURIComponent(product.name)}">Solicitar demo</a>
           <a class="btn btn-ghost" href="produtos.html">Voltar ao catálogo</a>
@@ -668,14 +912,21 @@ function initProductPage() {
       </div>
     </section>
   `;
+  bindServiceLocks(root);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  ensureLoginModal();
+  await fetchSession();
   mountChrome();
+  updateAuthBanner();
+
   const page = document.body.dataset.page;
   if (page === "home") initHome();
   if (page === "produtos") initFilters();
   if (page === "contato") initContactPrefill();
   if (page === "produto") initProductPage();
   if (page && PILLARS[page]) initPillarPage(page);
+
+  bindServiceLocks(document);
 });
