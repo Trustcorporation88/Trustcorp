@@ -1,161 +1,326 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trust Corporation | Patrimônio & Legado</title>
-  <meta name="description" content="Trust Corporation: holding digital com produtos para empresas, inteligência, marketing, produtividade e lifestyle." />
-  <link rel="icon" href="assets/logo-trust.png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark');
-    }
-  </script>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trust Corporation — A holding digital que reúne seus sistemas sob uma estrutura só</title>
+<meta name="description" content="Trust Corporation: holding digital B2B com 17 produtos em 5 pilares — Empresas, Inteligência, Marketing, Produtividade e Lifestyle.">
+<meta name="theme-color" content="#0A111E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Trust Corporation — todos os seus sistemas sob uma estrutura só">
+<meta property="og:description" content="Holding digital B2B com 17 produtos em 5 pilares. Uma entrada, catálogo completo, rastreabilidade.">
+<meta property="og:url" content="https://trustcorp.com.br/">
+<link rel="icon" href="assets/logo-trust.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
-<body data-page="home">
-  <div id="site-header"></div>
+<body>
+<div id="auth-banner" class="auth-banner" hidden></div>
+<!-- ======= NAV ======= -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand">
+      <span class="mark"><img src="assets/logo-trust.png" alt="Brasão Trust Corporation"></span>
+      <span>Trust Corporation<small>PATRIMÔNIO &amp; LEGADO</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#navegar">Como navegar</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#autoridade">A holding</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    
+    <button type="button" class="nav-auth" id="navLoginBtn">Entrar</button>
+    <a href="contato.html" class="nav-cta" id="navCta">Falar com especialista</a>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Trust Corporation</div>
-          <h1>Uma holding.<br /><span>Todos os produtos com link.</span></h1>
-          <p class="lead">
-            Navegue por pilares, abra o domínio de cada produto e fale com a TrustCorp.
-            Menu simples. Catálogo completo. Páginas individuais.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#mapa">Ver todos os produtos</a>
-            <a class="btn btn-secondary" href="contato.html">Falar com especialista</a>
-          </div>
-          <div class="path-row">
-            <a class="path-chip" href="empresas.html">Empresas</a>
-            <a class="path-chip" href="inteligencia.html">Inteligência</a>
-            <a class="path-chip" href="marketing.html">Marketing</a>
-            <a class="path-chip" href="produtividade.html">Produtividade</a>
-            <a class="path-chip" href="lifestyle.html">Lifestyle</a>
-          </div>
-        </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#navegar">Como navegar</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#autoridade">A holding</a>
+    <a href="#faq">Dúvidas</a>
+    <a href="https://wa.me/5514998370223" style="color:var(--gold)" target="_blank" rel="noopener">Falar com especialista →</a>
+  </nav>
+</header>
 
-        <aside class="hero-panel">
-          <div class="hero-logo-wrap">
-            <img src="assets/logo-trust.png" alt="Trust Corporation" class="hero-logo" />
-          </div>
-          <div class="stat-grid">
-            <div class="stat"><strong id="product-total">17</strong><span>produtos</span></div>
-            <div class="stat"><strong>5</strong><span>pilares</span></div>
-            <div class="stat"><strong>B2B</strong><span>foco holding</span></div>
-            <div class="stat"><strong>1</strong><span>entrada</span></div>
-          </div>
-        </aside>
+<a id="top"></a>
+
+<!-- ======= HERO ======= -->
+<section class="hero">
+  <div class="grid-lines" aria-hidden="true">
+    <span style="left:20%"></span><span style="left:45%"></span><span style="left:70%"></span><span style="left:88%"></span>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">Holding digital · B2B</span>
+      <h1>Todos os seus sistemas sob <span class="g">uma estrutura só.</span></h1>
+      <p class="lede">A Trust Corporation reúne 17 produtos em 5 pilares — do contábil à inteligência de dados. Uma entrada, um catálogo, uma governança.</p>
+      <div class="hero-cta">
+        <a href="#produtos" class="btn btn-primary">Ver o ecossistema</a>
+        <a href="contato.html" class="btn btn-ghost" target="_blank" rel="noopener">Falar com um especialista</a>
       </div>
-    </section>
+      <div class="hero-trust"><b>Feito para</b> escritórios, grupos empresariais e operações que exigem rastreabilidade.</div>
+    </div>
 
-    <section class="section" id="como-navegar">
-      <div class="container">
-        <div class="section-head">
-          <h2>Como navegar em 3 passos</h2>
-          <p>Clique em cada passo para ir direto. Depois escolha o produto e acesse o domínio.</p>
-        </div>
-        <div class="steps">
-          <a class="step step-link" href="#pilares">
-            <div>
-              <h3>1. Escolha o pilar</h3>
-              <p>Empresas, Inteligência, Marketing, Produtividade ou Lifestyle.</p>
-              <div class="step-links">
-                <span data-href="empresas.html" class="step-mini">Empresas</span>
-                <span data-href="inteligencia.html" class="step-mini">Inteligência</span>
-                <span data-href="marketing.html" class="step-mini">Marketing</span>
-                <span data-href="produtividade.html" class="step-mini">Produtividade</span>
-                <span data-href="lifestyle.html" class="step-mini">Lifestyle</span>
-              </div>
-            </div>
-          </a>
-          <a class="step step-link" href="#mapa">
-            <div>
-              <h3>2. Abra o produto</h3>
-              <p>Cada card tem domínio, status, detalhes e botão de acesso.</p>
-              <span class="step-cta">Ver mapa completo →</span>
-            </div>
-          </a>
-          <a class="step step-link" href="contato.html">
-            <div>
-              <h3>3. Fale com a TrustCorp</h3>
-              <p>Demo, parceria ou integração via WhatsApp e e-mail oficiais.</p>
-              <span class="step-cta">Abrir contato →</span>
-            </div>
-          </a>
-        </div>
+    <!-- SIGNATURE: holdings index -->
+    <div class="index-card reveal" aria-label="Índice de produtos da holding">
+      <div class="index-head">
+        <span class="t">Índice de holdings</span>
+        <span class="live">operante</span>
       </div>
-    </section>
+      <div class="index-row"><span class="tk">PCT</span><span class="nm">ProContador<span>Rotina contábil</span></span><span class="pil">Empresas</span></div>
+      <div class="index-row"><span class="tk">WTS</span><span class="nm">Watson<span>Inteligência de dados</span></span><span class="pil">Intel</span></div>
+      <div class="index-row"><span class="tk">SFL</span><span class="nm">Social Flow<span>Fluxo de marketing</span></span><span class="pil">Mktg</span></div>
+      <div class="index-row"><span class="tk">PDF</span><span class="nm">Cortex PDF<span>Produtividade documental</span></span><span class="pil">Prod</span></div>
+      <div class="index-row"><span class="tk">VOO</span><span class="nm">Voos Cortex<span>Lifestyle executivo</span></span><span class="pil">Life</span></div>
+      <div class="index-foot"><span>5 pilares · 17 ativos</span><span>entrada única <b>trustcorp.com.br</b></span></div>
+    </div>
+  </div>
+</section>
 
-    <section class="section" id="pilares" style="padding-top:0">
-      <div class="container">
-        <div class="section-head">
-          <h2>Escolha o pilar</h2>
-          <p>Clique no pilar para ver os produtos daquela área.</p>
-        </div>
-        <div class="pillar-grid">
-          <a class="pillar-card" href="empresas.html">
-            <div class="icon-dot">1</div>
-            <h3>Empresas</h3>
-            <p>ProContador · CRM · Legal · Fin · CNPJ · Excel</p>
-            <span class="link">Abrir →</span>
-          </a>
-          <a class="pillar-card" href="inteligencia.html">
-            <div class="icon-dot">2</div>
-            <h3>Inteligência</h3>
-            <p>Watson · Mr. Holmes · Oráculo · InvestigaTop · Future Fish · CNPJ</p>
-            <span class="link">Abrir →</span>
-          </a>
-          <a class="pillar-card" href="marketing.html">
-            <div class="icon-dot">3</div>
-            <h3>Marketing</h3>
-            <p>Social Flow · Trust Insta</p>
-            <span class="link">Abrir →</span>
-          </a>
-          <a class="pillar-card" href="produtividade.html">
-            <div class="icon-dot">4</div>
-            <h3>Produtividade</h3>
-            <p>Cortex PDF · Trust Excel</p>
-            <span class="link">Abrir →</span>
-          </a>
-          <a class="pillar-card" href="lifestyle.html">
-            <div class="icon-dot">5</div>
-            <h3>Lifestyle</h3>
-            <p>Voos Cortex · SeligaAqui · GPS Privado</p>
-            <span class="link">Abrir →</span>
-          </a>
-        </div>
+<!-- ======= STATS ======= -->
+<div class="stats">
+  <div class="wrap"><div class="stats-grid">
+    <div class="stat reveal"><div class="n" data-count="17">0</div><div class="l">produtos no catálogo</div></div>
+    <div class="stat reveal"><div class="n" data-count="5">0</div><div class="l">pilares estratégicos</div></div>
+    <div class="stat reveal"><div class="n">B2B</div><div class="l">foco da holding</div></div>
+    <div class="stat reveal"><div class="n" data-count="1">0</div><div class="l">porta de entrada</div></div>
+  </div></div>
+</div>
+
+<!-- ======= COMO NAVEGAR ======= -->
+<section class="steps" id="navegar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Como navegar</span>
+      <h2>Do primeiro clique ao produto certo, em 3 passos.</h2>
+      <p>Sem manual, sem curva de aprendizado. A estrutura foi feita para você chegar rápido ao que precisa.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <svg class="arw" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span class="sn">PASSO 01</span>
+        <h3>Escolha o pilar</h3>
+        <p>Empresas, Inteligência, Marketing, Produtividade ou Lifestyle. Você entra pela frente que resolve a sua dor atual.</p>
       </div>
-    </section>
-
-    <section class="section" id="mapa">
-      <div class="container">
-        <div class="section-head">
-          <h2>Mapa completo do ecossistema</h2>
-          <p>Todos os produtos listados com link direto. Clique em <strong>Detalhes</strong> para a página individual.</p>
-        </div>
-        <div id="home-product-map"></div>
+      <div class="step reveal">
+        <svg class="arw" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span class="sn">PASSO 02</span>
+        <h3>Abra o produto</h3>
+        <p>Cada card traz domínio, status, detalhes e botão de acesso. Você vê exatamente o que está contratando.</p>
       </div>
-    </section>
-
-    <section class="container">
-      <div class="cta-band">
-        <h2>Não sabe por onde começar?</h2>
-        <p>Fale com a TrustCorp e indicamos o produto certo para o seu caso.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="contato.html">Falar com especialista</a>
-          <a class="btn btn-secondary" href="https://wa.me/5514998370223" target="_blank" rel="noopener noreferrer">WhatsApp @frinaldi.co</a>
-        </div>
+      <div class="step reveal">
+        <span class="sn">PASSO 03</span>
+        <h3>Fale com a Trust</h3>
+        <p>Demo, parceria ou integração pelos canais oficiais. A gente indica o caminho e acompanha a implementação.</p>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
+</section>
 
-  <div id="site-footer"></div>
-  <script src="app.js"></script>
+<!-- ======= AUTORIDADE / SOBRE ======= -->
+<section class="about" id="autoridade">
+  <div class="wrap about-grid">
+    <div class="about-copy reveal">
+      <span class="eyebrow">A holding</span>
+      <h2 style="font-family:'Space Grotesk';font-size:clamp(28px,3.6vw,42px);font-weight:600;margin:18px 0 24px">Não é uma coleção de ferramentas soltas. É um ecossistema com endereço.</h2>
+      <p>Cada operação acumula sistemas: um para o contábil, outro para vendas, outro para o jurídico, mais um para dados. Com o tempo, isso vira dispersão — <strong>logins espalhados, contratos paralelos e nenhuma visão do conjunto.</strong></p>
+      <p>A Trust Corporation existe para resolver isso na origem. Você acessa uma holding única e, a partir dela, abre o domínio de cada produto com <strong>status, detalhes e rastreabilidade</strong>. Menu simples, catálogo completo, páginas individuais.</p>
+      <p>É a diferença entre contratar dez fornecedores e ter <strong>um parceiro que responde pelo todo.</strong></p>
+      <a href="#produtos" class="btn btn-ghost" style="margin-top:8px">Conhecer os pilares</a>
+    </div>
+    <div class="pillars-list reveal">
+      <div class="pillar-item"><span class="idx">01</span><span class="info"><b>Empresas</b><span>ProContador · CRM · Legal · Fin · CNPJ · Excel</span></span><span class="cnt">6</span></div>
+      <div class="pillar-item"><span class="idx">02</span><span class="info"><b>Inteligência</b><span>Watson · Mr. Holmes · Oráculo · InvestigaTop · Future Fish</span></span><span class="cnt">6</span></div>
+      <div class="pillar-item"><span class="idx">03</span><span class="info"><b>Marketing</b><span>Social Flow · Trust Insta</span></span><span class="cnt">2</span></div>
+      <div class="pillar-item"><span class="idx">04</span><span class="info"><b>Produtividade</b><span>Cortex PDF · Trust Excel</span></span><span class="cnt">2</span></div>
+      <div class="pillar-item"><span class="idx">05</span><span class="info"><b>Lifestyle</b><span>Voos Cortex · SeligaAqui · GPS Privado</span></span><span class="cnt">3</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= PRODUTOS ======= -->
+<section id="produtos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Catálogo</span>
+      <h2>O ecossistema completo, em um só índice.</h2>
+      <p>Filtre por pilar e abra o produto certo para o seu caso. Cada card leva ao domínio individual com detalhes e acesso.</p>
+    </div>
+
+    <div class="filters reveal" id="filters">
+      <button class="chip active" data-f="all">Todos</button>
+      <button class="chip" data-f="empresas">Empresas</button>
+      <button class="chip" data-f="intel">Inteligência</button>
+      <button class="chip" data-f="mktg">Marketing</button>
+      <button class="chip" data-f="prod">Produtividade</button>
+      <button class="chip" data-f="life">Lifestyle</button>
+    </div>
+
+    <div class="prod-grid" id="prodGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<!-- ======= BENEFÍCIOS ======= -->
+<section class="benefits" id="beneficios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Por que uma holding</span>
+      <h2>O que muda quando tudo passa a viver no mesmo lugar.</h2>
+    </div>
+    <div class="ben-grid">
+      <div class="ben reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+        <h3>Uma entrada, zero dispersão</h3>
+        <p>Acabam os logins espalhados e os contratos paralelos. Você entra por um só endereço e navega o catálogo inteiro.</p>
+      </div>
+      <div class="ben reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Rastreabilidade real</h3>
+        <p>Cada produto com status, detalhes e histórico. Você enxerga o conjunto — não só peças isoladas.</p>
+      </div>
+      <div class="ben reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3>Escala sem retrabalho</h3>
+        <p>Precisou de mais um produto? Ele já vive na mesma estrutura. Você adiciona capacidade sem trocar de fornecedor.</p>
+      </div>
+      <div class="ben reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+        <h3>Especialização por pilar</h3>
+        <p>Contábil, inteligência, marketing, produtividade e lifestyle — cada frente com produto dedicado, não genérico.</p>
+      </div>
+      <div class="ben reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div>
+        <h3>Um parceiro pelo todo</h3>
+        <p>Em vez de dez fornecedores e dez responsáveis, uma holding que responde pelo conjunto da sua operação.</p>
+      </div>
+      <div class="ben reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Decisão mais rápida</h3>
+        <p>Da consulta fiscal à inteligência de dados, o caminho é curto. Menos tempo procurando ferramenta, mais tempo operando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= PROVA / CREDIBILIDADE ======= -->
+<section id="prova">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Credibilidade</span>
+      <h2>Operações que já concentraram tudo aqui.</h2>
+      <p>Substitua os depoimentos abaixo por relatos reais de clientes assim que forem coletados.</p>
+    </div>
+    <!-- PLACEHOLDER: trocar por depoimentos verificados de clientes reais -->
+    <div class="proof-grid">
+      <div class="quote reveal">
+        <span class="stars">★★★★★</span>
+        <p>“Tínhamos sistema para cada coisa. Concentrar na Trust deu à diretoria uma visão que a gente não tinha.”</p>
+        <div class="who"><span class="av">GE</span><div><b>[Nome do cliente]</b><span>Grupo empresarial · [segmento]</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <span class="stars">★★★★★</span>
+        <p>“O que mais pesou foi a rastreabilidade. Uma entrada só e todo o histórico ali, auditável.”</p>
+        <div class="who"><span class="av">EC</span><div><b>[Nome do cliente]</b><span>Escritório contábil · [cidade]</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <span class="stars">★★★★★</span>
+        <p>“Crescemos e fomos adicionando produtos sem trocar de fornecedor. A estrutura acompanhou.”</p>
+        <div class="who"><span class="av">OP</span><div><b>[Nome do cliente]</b><span>Operação B2B · [porte]</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= OBJEÇÕES ======= -->
+<section class="about" id="objecoes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Quebra de objeções</span>
+      <h2>O que costuma passar pela cabeça antes de decidir.</h2>
+    </div>
+    <div class="acc reveal">
+      <div class="acc-item"><button class="acc-q"><span class="qn">01</span>“Já tenho meus sistemas. Por que centralizar?”</button><div class="acc-a"><p>Você não precisa trocar tudo de uma vez. A holding é uma entrada única: você começa pelo pilar de maior dor e vai concentrando o resto no seu ritmo — sem perder o que já funciona.</p></div></div>
+      <div class="acc-item"><button class="acc-q"><span class="qn">02</span>“São muitos produtos. Não é complexo demais?”</button><div class="acc-a"><p>São 17 produtos, mas a navegação é em 3 passos: escolha o pilar, abra o produto, fale com a Trust. O catálogo é amplo justamente para você não precisar sair da estrutura quando surgir uma nova necessidade.</p></div></div>
+      <div class="acc-item"><button class="acc-q"><span class="qn">03</span>“É para o meu porte de empresa?”</button><div class="acc-a"><p>O foco é B2B: escritórios, grupos empresariais e operações que precisam de rotina executiva com rastreabilidade. Se você já sente a dispersão de ter sistema para cada coisa, é para você.</p></div></div>
+      <div class="acc-item"><button class="acc-q"><span class="qn">04</span>“E se eu não souber por onde começar?”</button><div class="acc-a"><p>Esse é o ponto da conversa inicial. Você fala com um especialista, descreve seu caso, e a Trust indica o produto certo — sem empurrar o catálogo inteiro.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= CTA FINAL ======= -->
+<section class="final">
+  <div class="wrap">
+    <div class="final-card reveal">
+      <img class="final-emblem" src="assets/logo-trust.png" alt="Brasão Trust Corporation">
+      <span class="eyebrow" style="justify-content:center">Comece por aqui</span>
+      <h2 style="margin-top:18px">Não sabe por onde começar?</h2>
+      <p>Fale com a Trust Corporation e a gente indica o produto certo para o seu caso — sem compromisso, direto no WhatsApp.</p>
+      <div class="final-cta">
+        <a href="https://wa.me/5514998370223" class="btn btn-primary" >Falar com especialista</a>
+        <a href="#produtos" class="btn btn-ghost" target="_blank" rel="noopener">Ver catálogo completo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FAQ ======= -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Perguntas frequentes</span>
+      <h2>Dúvidas rápidas.</h2>
+    </div>
+    <div class="acc reveal">
+      <div class="acc-item"><button class="acc-q"><span class="qn">?</span>O que é exatamente a Trust Corporation?</button><div class="acc-a"><p>Uma holding digital B2B que reúne 17 produtos em 5 pilares — Empresas, Inteligência, Marketing, Produtividade e Lifestyle — sob uma única porta de entrada.</p></div></div>
+      <div class="acc-item"><button class="acc-q"><span class="qn">?</span>Preciso contratar todos os produtos?</button><div class="acc-a"><p>Não. Você escolhe o pilar e o produto que resolvem a sua dor atual. O restante do catálogo fica disponível para quando fizer sentido.</p></div></div>
+      <div class="acc-item"><button class="acc-q"><span class="qn">?</span>Como cada produto é acessado?</button><div class="acc-a"><p>Cada card do catálogo leva ao domínio individual do produto, com status, detalhes e botão de acesso. A entrada principal é sempre pela holding.</p></div></div>
+      <div class="acc-item"><button class="acc-q"><span class="qn">?</span>Como falo com a equipe?</button><div class="acc-a"><p>Pelo WhatsApp oficial (@frinaldi.co) ou pela página de contato. Você descreve o caso e recebe a indicação do produto certo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand"><span class="mark"><img src="assets/logo-trust.png" alt="Brasão Trust Corporation"></span><span>Trust Corporation<small>PATRIMÔNIO &amp; LEGADO</small></span></a>
+        <p>Holding digital B2B. Uma entrada, catálogo completo, páginas individuais.</p>
+      </div>
+      <div>
+        <h4>Pilares</h4>
+        <a href="https://trustcorp.com.br/empresas.html">Empresas</a>
+        <a href="https://trustcorp.com.br/inteligencia.html">Inteligência</a>
+        <a href="https://trustcorp.com.br/marketing.html">Marketing</a>
+        <a href="https://trustcorp.com.br/produtividade.html">Produtividade</a>
+        <a href="https://trustcorp.com.br/lifestyle.html">Lifestyle</a>
+      </div>
+      <div>
+        <h4>Navegar</h4>
+        <a href="#produtos">Catálogo completo</a>
+        <a href="#autoridade">A holding</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="#faq">Dúvidas</a>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <a href="https://wa.me/5514998370223" target="_blank" rel="noopener">WhatsApp @frinaldi.co</a>
+        <a href="contato.html" >Falar com especialista</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Trust Corporation. Todos os direitos reservados.</span>
+      <span class="mono" style="font-size:11px">trustcorp.com.br</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>

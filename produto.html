@@ -4,24 +4,67 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Produto | Trust Corporation</title>
-  <meta name="description" content="Detalhes do produto Trust Corporation: entrega, público e acesso." />
+  <meta name="description" content="Detalhes do produto Trust Corporation." />
   <link rel="icon" href="assets/logo-trust.png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark');
-    }
-  </script>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{background:#0A111E;color:#f4f7fb;font-family:Inter,Manrope,system-ui,sans-serif;margin:0}
+    .wrap{max-width:960px;margin:0 auto;padding:24px 16px 64px}
+    .back{color:#c99c66;text-decoration:none;font-size:14px}
+    .panel{margin-top:18px;padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(15,26,44,.9)}
+    h1{margin:8px 0 10px;font-size:clamp(1.6rem,4vw,2.4rem)}
+    .lead{color:#9aa6b2;line-height:1.6}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:600}
+    .btn-p{background:linear-gradient(135deg,#e0c48a,#9a7640);color:#1a1205}
+    .btn-g{border:1px solid rgba(255,255,255,.14);color:#c5cddb}
+    .domain{color:#c99c66;font-family:IBM Plex Mono,monospace;font-size:13px}
+    .note{margin-top:12px;padding:10px 12px;border-radius:12px;background:rgba(201,156,102,.08);border:1px solid rgba(201,156,102,.18);color:#e0c48a}
+  </style>
 </head>
-<body data-page="produto">
-  <div id="site-header"></div>
-  <main>
-    <div class="container" style="padding-top:1rem;padding-bottom:2rem">
-      <div id="product-detail"></div>
-    </div>
-  </main>
-  <div id="site-footer"></div>
+<body>
+  <div class="wrap">
+    <a class="back" href="index.html">← Voltar para a holding</a>
+    <div class="panel" id="detail">Carregando…</div>
+  </div>
   <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // reuse PRODUCTS from app.js
+      const params = new URLSearchParams(location.search);
+      const id = params.get('id');
+      const p = (window.PRODUCTS || PRODUCTS || []).find(x => x.id === id);
+      const root = document.getElementById('detail');
+      if (!p) {
+        root.innerHTML = '<h1>Produto não encontrado</h1><p class="lead">Volte ao catálogo.</p><a class="btn btn-p" href="index.html#produtos">Ver produtos</a>';
+        return;
+      }
+      document.title = p.name + ' | Trust Corporation';
+      const soon = p.status === 'em_breve';
+      // wait a tick for AUTH fetch in app.js
+      setTimeout(() => {
+        const locked = !(typeof canAccessServices === 'function' && canAccessServices()) && !soon;
+        const href = soon || locked ? '#' : p.url;
+        const attrs = soon ? 'aria-disabled="true"' : locked ? 'data-requires-auth="true"' : 'target="_blank" rel="noopener noreferrer"';
+        const cta = soon ? 'Em breve' : locked ? 'Desbloquear acesso' : 'Acessar produto';
+        root.innerHTML = `
+          <div class="kicker" style="color:#c99c66;font-family:IBM Plex Mono,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase">${p.label} · ${p.tk}</div>
+          <h1>${p.name}</h1>
+          <p class="lead">${p.desc}</p>
+          <p class="domain">${p.domain}${locked ? ' · bloqueado' : ''}</p>
+          ${locked ? '<div class="note">Serviço bloqueado para visitantes. Entre com senha de administrador ou cliente.</div>' : ''}
+          <div class="actions">
+            <a class="btn btn-p" href="${href}" ${attrs}>${cta}</a>
+            <a class="btn btn-g" href="contato.html?produto=${encodeURIComponent(p.name)}">Demo</a>
+            <a class="btn btn-g" href="index.html#produtos">Catálogo</a>
+          </div>`;
+        if (typeof bindLocks === 'function') bindLocks(root);
+        root.querySelector('[data-requires-auth]')?.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (typeof openLoginModal === 'function') openLoginModal('Para acessar este serviço, use a senha de administrador ou de cliente.');
+        });
+      }, 80);
+    });
+  </script>
 </body>
 </html>

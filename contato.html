@@ -4,80 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contato | Trust Corporation</title>
-  <meta name="description" content="Fale com a Trust Corporation: demo, integração e conversa sobre o ecossistema." />
   <link rel="icon" href="assets/logo-trust.png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark');
-    }
-  </script>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{background:#0A111E;color:#f4f7fb;font-family:Inter,Manrope,system-ui,sans-serif;margin:0}
+    .wrap{max-width:960px;margin:0 auto;padding:24px 16px 64px}
+    .grid{display:grid;gap:16px}
+    @media(min-width:800px){.grid{grid-template-columns:1.1fr .9fr}}
+    .panel{padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(15,26,44,.9)}
+    h1{margin:0 0 10px;font-size:clamp(1.6rem,4vw,2.3rem)}
+    .lead{color:#9aa6b2}
+    label{display:block;margin:12px 0 6px;color:#8b95a7;font-size:13px}
+    input,textarea{width:100%;box-sizing:border-box;min-height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);color:#fff;padding:10px 12px;font:inherit}
+    textarea{min-height:120px;resize:vertical}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 14px;border-radius:12px;border:0;background:linear-gradient(135deg,#e0c48a,#9a7640);color:#1a1205;font-weight:700;cursor:pointer;margin-top:14px}
+    a{color:#c99c66}
+    ul{line-height:1.7;color:#c5cddb}
+  </style>
 </head>
-<body data-page="contato">
-  <div id="site-header"></div>
-  <main>
-    <section class="page-hero">
-      <div class="container">
-        <div class="eyebrow">Contato</div>
-        <h1>Fale com a <span>TrustCorp</span></h1>
-        <p class="lead">Solicite demo, integração ou uma conversa sobre o pilar certo para o seu negócio.</p>
+<body>
+  <div class="wrap">
+    <p><a href="index.html">← Voltar</a></p>
+    <div class="grid">
+      <div class="panel">
+        <h1>Fale com a TrustCorp</h1>
+        <p class="lead">Solicite demo, acesso ou integração. Enviamos direto para o WhatsApp oficial.</p>
+        <form id="contact-form">
+          <label for="nome">Nome</label>
+          <input id="nome" required />
+          <label for="email">E-mail</label>
+          <input id="email" type="email" required />
+          <label for="empresa">Empresa</label>
+          <input id="empresa" />
+          <label for="produto">Produto / interesse</label>
+          <input id="produto" />
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem"></textarea>
+          <button class="btn" type="submit">Enviar no WhatsApp</button>
+        </form>
       </div>
-    </section>
-
-    <section class="section" style="padding-top:0">
-      <div class="container split">
-        <div class="form-card">
-          <h2 style="margin-top:0;margin-bottom:1rem">Solicitar contato</h2>
-          <form class="form-grid" id="contact-form">
-            <div class="field">
-              <label for="nome">Nome</label>
-              <input id="nome" name="nome" class="field-input" required placeholder="Seu nome" />
-            </div>
-            <div class="field">
-              <label for="email">E-mail</label>
-              <input id="email" name="email" type="email" class="field-input" required placeholder="voce@empresa.com" />
-            </div>
-            <div class="field">
-              <label for="empresa">Empresa</label>
-              <input id="empresa" name="empresa" class="field-input" placeholder="Opcional" />
-            </div>
-            <div class="field">
-              <label for="produto">Produto / pilar de interesse</label>
-              <input id="produto" name="produto" class="field-input" placeholder="Ex.: ProContador, Inteligência, Social Flow" />
-            </div>
-            <div class="field">
-              <label for="mensagem">Mensagem</label>
-              <textarea id="mensagem" name="mensagem" class="field-textarea" placeholder="Conte o objetivo da conversa"></textarea>
-            </div>
-            <button class="btn btn-primary" type="submit">Enviar no WhatsApp</button>
-            <p class="form-note">Ao enviar, abrimos o WhatsApp com sua mensagem pronta para a TrustCorp.</p>
-          </form>
-        </div>
-
-        <div class="panel">
-          <h2 style="margin-top:0">Canais oficiais</h2>
-          <ul class="list-plain">
-            <li><strong>E-mail:</strong> <a href="mailto:flavio@trustcorp.com.br">flavio@trustcorp.com.br</a></li>
-            <li><strong>WhatsApp:</strong> <a href="https://wa.me/5514998370223" target="_blank" rel="noopener noreferrer">@frinaldi.co</a></li>
-            <li><strong>Instagram:</strong> <a href="https://instagram.com/frinaldi.co" target="_blank" rel="noopener noreferrer">@frinaldi.co</a></li>
-          </ul>
-          <div style="height:1rem"></div>
-          <h3 style="color:var(--gold-soft);margin:0 0 0.5rem">Atendimento</h3>
-          <ul class="list-plain">
-            <li>Demos e parcerias da holding</li>
-            <li>Integração entre produtos do ecossistema</li>
-            <li>Suporte comercial B2B</li>
-          </ul>
-          <div class="cta-row" style="margin-top:1.25rem">
-            <a class="btn btn-secondary" href="https://wa.me/5514998370223?text=Ol%C3%A1%20TrustCorp%21%20Gostaria%20de%20falar%20com%20um%20especialista." target="_blank" rel="noopener noreferrer">WhatsApp direto</a>
-            <a class="btn btn-ghost" href="mailto:flavio@trustcorp.com.br">Enviar e-mail</a>
-          </div>
-        </div>
+      <div class="panel">
+        <h2 style="margin-top:0">Canais oficiais</h2>
+        <ul>
+          <li>E-mail: <a href="mailto:flavio@trustcorp.com.br">flavio@trustcorp.com.br</a></li>
+          <li>WhatsApp: <a href="https://wa.me/5514998370223" target="_blank" rel="noopener">@frinaldi.co</a></li>
+          <li>Instagram: <a href="https://instagram.com/frinaldi.co" target="_blank" rel="noopener">@frinaldi.co</a></li>
+        </ul>
       </div>
-    </section>
-  </main>
-  <div id="site-footer"></div>
-  <script src="app.js"></script>
+    </div>
+  </div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    if (params.get('produto')) document.getElementById('produto').value = params.get('produto');
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = [
+        'Olá, TrustCorp!',
+        `Nome: ${nome.value.trim()}`,
+        `E-mail: ${email.value.trim()}`,
+        empresa.value.trim() ? `Empresa: ${empresa.value.trim()}` : null,
+        `Interesse: ${produto.value.trim() || 'Não informado'}`,
+        mensagem.value.trim() ? `Mensagem: ${mensagem.value.trim()}` : null,
+      ].filter(Boolean).join('\n');
+      window.open(`https://wa.me/5514998370223?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    });
+  </script>
 </body>
 </html>
