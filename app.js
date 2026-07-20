@@ -162,6 +162,7 @@ function updateAuthBanner() {
   const banner = document.getElementById("auth-banner");
   if (!banner) return;
   banner.hidden = false;
+  document.body.classList.add("has-auth-banner");
   if (canAccessServices()) {
     banner.classList.add("open");
     banner.innerHTML = `<div class="wrap"><span>Serviços liberados · ${roleLabel(AUTH.role)}</span><button type="button" class="nav-auth" id="authLogoutBtn">Sair</button></div>`;
