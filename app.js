@@ -159,35 +159,28 @@ function closeLoginModal() {
 }
 
 function updateAuthBanner() {
+  // Banner separado removido: cobria o logo. Status fica só na navbar.
   const banner = document.getElementById("auth-banner");
-  if (!banner) return;
-  banner.hidden = false;
-  document.body.classList.add("has-auth-banner");
-  if (canAccessServices()) {
-    banner.classList.add("open");
-    banner.innerHTML = `<div class="wrap"><span>Serviços liberados · ${roleLabel(AUTH.role)}</span><button type="button" class="nav-auth" id="authLogoutBtn">Sair</button></div>`;
-  } else {
-    banner.classList.remove("open");
-    banner.innerHTML = `<div class="wrap"><span>Site aberto para visitação · serviços bloqueados</span><button type="button" class="nav-auth" id="authLoginBtn">Entrar</button></div>`;
+  if (banner) {
+    banner.hidden = true;
+    banner.innerHTML = "";
   }
-  document.getElementById("authLoginBtn")?.addEventListener("click", () => openLoginModal());
-  document.getElementById("authLogoutBtn")?.addEventListener("click", async () => {
-    await logoutSession();
-    refreshAuthUI();
-  });
+  document.body.classList.remove("has-auth-banner");
 }
 
 function updateNavAuth() {
   const btn = document.getElementById("navLoginBtn");
   if (!btn) return;
   if (canAccessServices()) {
-    btn.textContent = `Sair (${roleLabel(AUTH.role)})`;
+    btn.textContent = `Sair · ${roleLabel(AUTH.role)}`;
+    btn.title = "Serviços liberados";
     btn.onclick = async () => {
       await logoutSession();
       refreshAuthUI();
     };
   } else {
     btn.textContent = "Entrar";
+    btn.title = "Site aberto · serviços bloqueados";
     btn.onclick = () => openLoginModal();
   }
 }
