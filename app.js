@@ -158,29 +158,23 @@ function closeLoginModal() {
   document.getElementById("login-modal")?.classList.remove("open");
 }
 
-function updateAuthBanner() {
-  // Banner separado removido: cobria o logo. Status fica só na navbar.
-  const banner = document.getElementById("auth-banner");
-  if (banner) {
-    banner.hidden = true;
-    banner.innerHTML = "";
-  }
-  document.body.classList.remove("has-auth-banner");
-}
-
 function updateNavAuth() {
+  // Remove any leftover banner nodes from older deploys/cache
+  document.querySelectorAll('#auth-banner, .auth-banner').forEach((el) => el.remove());
+  document.body.classList.remove('has-auth-banner');
+
   const btn = document.getElementById("navLoginBtn");
   if (!btn) return;
   if (canAccessServices()) {
     btn.textContent = `Sair · ${roleLabel(AUTH.role)}`;
-    btn.title = "Serviços liberados";
+    btn.title = "Acesso liberado";
     btn.onclick = async () => {
       await logoutSession();
       refreshAuthUI();
     };
   } else {
     btn.textContent = "Entrar";
-    btn.title = "Site aberto · serviços bloqueados";
+    btn.title = "Serviços bloqueados para visitantes";
     btn.onclick = () => openLoginModal();
   }
 }
@@ -238,7 +232,6 @@ function renderProducts(filter = "all") {
 }
 
 function refreshAuthUI() {
-  updateAuthBanner();
   updateNavAuth();
   const active = document.querySelector(".chip.active");
   renderProducts(active?.dataset?.f || "all");
@@ -356,7 +349,6 @@ function initLayoutExtras() {
 document.addEventListener("DOMContentLoaded", async () => {
   ensureLoginModal();
   await fetchSession();
-  updateAuthBanner();
   updateNavAuth();
   initLayoutExtras();
   renderProducts("all");
