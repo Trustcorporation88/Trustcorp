@@ -16,8 +16,30 @@ const PRODUCTS = [
     desc:"Consulta completa CNPJ e CPF com dados cadastrais, societários e fiscais.",
     url:"https://cnpj.trustcorp.com.br", domain:"cnpj.trustcorp.com.br", status:"ativo", also:["intel"] },
   { id:"excel", tk:"XLS", name:"Trust Excel", pil:"prod", label:"Produtividade",
-    desc:"Agente Excel com 8 modos: insights, fórmulas, limpeza, comparação, resumo, dashboard e automação.",
+    desc:"Agente Excel com 8 modos + 7 planilhas automatizadas prontas para download.",
     url:"https://excel.trustcorp.com.br", domain:"excel.trustcorp.com.br", status:"ativo", also:["empresas"] },
+
+  { id:"xls-financeiro", tk:"XF1", name:"Planilha Financeiro Pessoal", pil:"prod", label:"Produtividade",
+    desc:"Controle de entradas/saídas com painel, categorias e gráfico automático.",
+    url:"https://excel.trustcorp.com.br/planilhas/01_controle_financeiro_pessoal.xlsx", domain:"excel.trustcorp.com.br/planilhas", status:"ativo", also:["empresas"] },
+  { id:"xls-fluxo", tk:"XF2", name:"Planilha Fluxo de Caixa", pil:"prod", label:"Produtividade",
+    desc:"Saldo hoje e projeção de 30 dias com realizados e previstos.",
+    url:"https://excel.trustcorp.com.br/planilhas/02_fluxo_de_caixa_simples.xlsx", domain:"excel.trustcorp.com.br/planilhas", status:"ativo", also:["empresas"] },
+  { id:"xls-metas", tk:"XF3", name:"Planilha Metas e Hábitos", pil:"prod", label:"Produtividade",
+    desc:"Progresso de metas e consistência semanal de hábitos com barra visual.",
+    url:"https://excel.trustcorp.com.br/planilhas/03_metas_e_habitos.xlsx", domain:"excel.trustcorp.com.br/planilhas", status:"ativo" },
+  { id:"xls-cobrancas", tk:"XF4", name:"Planilha Controle de Cobranças", pil:"prod", label:"Produtividade",
+    desc:"Semáforo de atraso, dias vencidos e fila de cobrança automática.",
+    url:"https://excel.trustcorp.com.br/planilhas/04_controle_de_cobrancas.xlsx", domain:"excel.trustcorp.com.br/planilhas", status:"ativo", also:["empresas"] },
+  { id:"xls-preco", tk:"XF5", name:"Planilha Precificação", pil:"prod", label:"Produtividade",
+    desc:"Valor da hora e cenários mínimo, ideal e premium com margem.",
+    url:"https://excel.trustcorp.com.br/planilhas/05_precificacao.xlsx", domain:"excel.trustcorp.com.br/planilhas", status:"ativo", also:["empresas"] },
+  { id:"xls-kanban", tk:"XF6", name:"Planilha Tarefas Kanban", pil:"prod", label:"Produtividade",
+    desc:"A fazer, fazendo e feito com alertas de atraso e limite WIP.",
+    url:"https://excel.trustcorp.com.br/planilhas/06_gestao_de_tarefas_kanban.xlsx", domain:"excel.trustcorp.com.br/planilhas", status:"ativo" },
+  { id:"xls-relatorio", tk:"XF7", name:"Planilha Relatório Automático", pil:"prod", label:"Produtividade",
+    desc:"Resumo semanal com variação, destaque e texto pronto para copiar.",
+    url:"https://excel.trustcorp.com.br/planilhas/07_relatorio_que_se_monta_sozinho.xlsx", domain:"excel.trustcorp.com.br/planilhas", status:"ativo", also:["empresas"] },
   { id:"watson", tk:"WTS", name:"Trust Watson", pil:"intel", label:"Inteligência",
     desc:"Assistente de IA para análise e automação cognitiva.",
     url:"https://watson.trustcorp.com.br", domain:"watson.trustcorp.com.br", status:"ativo" },
@@ -189,13 +211,14 @@ function matchesFilter(p, filter) {
 function productCard(p) {
   const soon = p.status === "em_breve";
   const locked = !canAccessServices() && !soon;
-  const cta = soon ? "Em breve" : locked ? "Bloqueado" : "Acessar";
+  const isFile = !soon && typeof p.url === 'string' && p.url.includes('.xlsx');
+  const cta = soon ? "Em breve" : locked ? "Bloqueado" : (isFile ? "Baixar" : "Acessar");
   const href = soon || locked ? "#" : p.url;
   const attrs = soon
     ? 'aria-disabled="true"'
     : locked
       ? 'data-requires-auth="true"'
-      : 'target="_blank" rel="noopener noreferrer"';
+      : (isFile ? 'download target="_blank" rel="noopener noreferrer"' : 'target="_blank" rel="noopener noreferrer"');
   const domain = locked || soon
     ? `<div class="domain locked">${p.domain}${locked ? " · bloqueado" : ""}</div>`
     : `<div class="domain"><a href="${p.url}" target="_blank" rel="noopener noreferrer">${p.domain}</a></div>`;
