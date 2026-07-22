@@ -16,7 +16,7 @@ const PRODUCTS = [
     desc:"Consulta completa CNPJ e CPF com dados cadastrais, societários e fiscais.",
     url:"https://cnpj.trustcorp.com.br", domain:"cnpj.trustcorp.com.br", status:"ativo", also:["intel"] },
   { id:"excel", tk:"XLS", name:"Trust Excel", pil:"prod", label:"Produtividade",
-    desc:"Agente Excel com 8 modos + 7 ferramentas premium com dashboards, gráficos e score.",
+    desc:"Agente Excel com 8 modos + 8 ferramentas premium com dashboards, gráficos e score.",
     url:"https://excel.trustcorp.com.br", domain:"excel.trustcorp.com.br", status:"ativo", also:["empresas"] },
 
   { id:"xls-financeiro", tk:"XF1", name:"Diagnóstico Financeiro 360", pil:"prod", label:"Produtividade",
@@ -40,6 +40,9 @@ const PRODUCTS = [
   { id:"xls-relatorio", tk:"XF7", name:"BI Executivo do Negócio", pil:"prod", label:"Produtividade",
     desc:"MRR bridge (cascata), sparklines, churn, CAC, LTV/CAC e leitura executiva.",
     url:"https://excel.trustcorp.com.br/planilhas/07_bi_executivo_negocio.xlsx", domain:"excel.trustcorp.com.br/planilhas", status:"ativo", also:["empresas"] },
+  { id:"xls-cohort", tk:"XF8", name:"Trust Cohort (Retenção)", pil:"prod", label:"Produtividade",
+    desc:"Análise de safras com heatmap de retenção, cascata média de evasão e saúde do LTV.",
+    url:"https://excel.trustcorp.com.br/planilhas/08_analise_cohort_retencao.xlsx", domain:"excel.trustcorp.com.br/planilhas", status:"ativo", also:["empresas"] },
   { id:"watson", tk:"WTS", name:"Trust Watson", pil:"intel", label:"Inteligência",
     desc:"Assistente de IA para análise e automação cognitiva.",
     url:"https://watson.trustcorp.com.br", domain:"watson.trustcorp.com.br", status:"ativo" },
