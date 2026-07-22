@@ -16,7 +16,7 @@ const PRODUCTS = [
     desc:"Consulta completa CNPJ e CPF com dados cadastrais, societários e fiscais.",
     url:"https://cnpj.trustcorp.com.br", domain:"cnpj.trustcorp.com.br", status:"ativo", also:["intel"] },
   { id:"excel", tk:"XLS", name:"Trust Excel", pil:"prod", label:"Produtividade",
-    desc:"Automação de planilhas e relatórios sem fricção.",
+    desc:"Agente Excel com 8 modos: insights, fórmulas, limpeza, comparação, resumo, dashboard e automação.",
     url:"https://excel.trustcorp.com.br", domain:"excel.trustcorp.com.br", status:"ativo", also:["empresas"] },
   { id:"watson", tk:"WTS", name:"Trust Watson", pil:"intel", label:"Inteligência",
     desc:"Assistente de IA para análise e automação cognitiva.",
